@@ -1,4 +1,4 @@
-import { UserRepository } from "../repositories/userRepository.js";
+import { UserRepository } from "../repositories/UserRepository.js";
 
 import UserCreateService from '../Services/UserCreateService.js';
 import UserUpdateService from '../Services/UserUpdateService.js';
