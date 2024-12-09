@@ -23,7 +23,6 @@ export default class NotesIndexService {
                 tags: noteTags
             }
         })
-        console.log(notesWithTags)
 
         return notesWithTags;
     }

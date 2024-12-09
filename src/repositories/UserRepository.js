@@ -1,40 +1,35 @@
-import sqliteConnection from "../database/sqlite/index.js"
+import knex from "../database/knex/index.js";
 
 export class UserRepository {
+    constructor(db) {
+        this.db = db;
+    }
     async findByEmail(email) {
-        const database = await sqliteConnection()
-        const user = await database.get("SELECT * FROM users WHERE email = (?)", [email])
+        const user = await knex("users").where({email}).first();
+
         return user
     }
 
     async create({name, email, password}) {
-        const database = await sqliteConnection()
-
-        const userId = await database.run("INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
-            [name, email, password]
-        )
+        const userId = await knex("users").insert({name, email, password})
 
         return {id: userId}
     }
 
     async findById(id) {
-        const database = await sqliteConnection()
-        const user = await database.get("SELECT * FROM users WHERE id = (?)", [id]);
+        const user = await knex("users").where({id}).first();
         
         return user
     }
 
     async update (user) {
-        const database = await sqliteConnection()
+        const userUpdated = await knex("users").where({id: user.id}). update({
+            name: user.name,
+            email: user.email,
+            password: user.password,
 
-        const userUpdated = await database.run (`
-            UPDATE users SET
-            name = ?,
-            email = ?,
-            password = ?,
-            updated_at = CURRENT_TIMESTAMP
-            WHERE id = ?
-        `, [user.name, user.email, user.password, user.id])
+            updated_at: knex.fn.now(6)
+        })
 
         return userUpdated
     }

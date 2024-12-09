@@ -10,7 +10,7 @@ export default class NoteCreateService {
 
         const linksInsert = links.map(link => {
             return {
-                note_id: note_id[0],
+                note_id: note_id[0].id,
                 url: link
             }
         })
@@ -19,7 +19,7 @@ export default class NoteCreateService {
 
         const tagsInsert = tags.map(name => {
             return {
-                note_id: note_id[0],
+                note_id: note_id[0].id,
                 name,
                 user_id
             }

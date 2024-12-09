@@ -10,8 +10,6 @@ import {migrationsRun} from './database/sqlite/migrations/index.js'
 
 const PORT = process.env.PORT || 3333
 
-migrationsRun()
-
 const app = express()
 app.use(express.json())
     .use(cors())

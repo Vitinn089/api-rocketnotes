@@ -6,7 +6,7 @@ export class NotesRepository {
             title,
             description,
             user_id
-        });
+        }).returning("id");
 
         return note_id;
     }
@@ -41,7 +41,7 @@ export class NotesRepository {
             .whereLike("notes.title", `%${title}%`)
             .whereIn("name", tags)
             .innerJoin("notes", "notes.id", "tags.note_id")
-            .orderBy("notes.id")
+            .orderBy("notes.id", "tags.id")
             .groupBy("title")
 
         return notes;

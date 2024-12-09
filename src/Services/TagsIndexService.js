@@ -1,6 +1,5 @@
 export default class TagsIndexService {
     constructor(tagsRepository) {
-        console.log(tagsRepository)
         this.tagsRepository = tagsRepository;
     }
 

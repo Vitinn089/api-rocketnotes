@@ -9,7 +9,6 @@ export default class NoteShowService {
 
     async execute({id}) {
         const note = await this.notesRepository.show({id})
-        console.log(note)
         
         if(!note) 
             return {}

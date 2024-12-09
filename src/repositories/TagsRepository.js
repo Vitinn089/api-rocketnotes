@@ -4,7 +4,7 @@ export default class TagsRepository {
     async index({user_id}) {
         const tags = await knex("tags")
         .where({ user_id })
-        .groupBy("name")
+        .groupBy("name", "tags.id")
 
         return tags
     }

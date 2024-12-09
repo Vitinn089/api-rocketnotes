@@ -8,7 +8,6 @@ export class UserAvatarController {
         const avatarFileName = request.file.filename
 
         const diskStorage = new DiskStorage();
-        console.log(user_id)
 
         const user = await knex('users').where({id: user_id}).first();
 
@@ -19,7 +18,6 @@ export class UserAvatarController {
             await diskStorage.deleteFile(user.avatar);
 
         const filename = await diskStorage.saveFile(avatarFileName)
-        console.log(user)
         user.avatar = filename
 
         await knex("users").update(user).where({id: user.id})

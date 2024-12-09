@@ -15,7 +15,6 @@ export default class UserUpdateService {
             throw new AppError('Usuário não encontrado!');
         
         const userWithUpdatedEmail = await this.userRepository.findByEmail(email);
-
         if (userWithUpdatedEmail && userWithUpdatedEmail.id !== user.id)
             throw new AppError('Este e-mail já está em uso.')
 
