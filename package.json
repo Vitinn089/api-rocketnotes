@@ -4,6 +4,7 @@
   "main": "./src/server.js",
   "scripts": {
     "start": "pm2-runtime start ecosystem.config.json --env production",
+    "build": "npm install&&npm run migrate",
     "dev": "nodemon ./src/server.js",
     "migrate": "knex migrate:latest"
   },
